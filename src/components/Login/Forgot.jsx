@@ -11,7 +11,7 @@ Fecha: 2025-07-08
 */
 
 //import forgotStyles from './styles/Forgot.module.css';
-import styles from '../../styles/general.module.css';
+import styles from '../../styles/General.module.css';
 import LoadingButton from '../common/LoadingButton';
 
 const Forgot = ({ forgotSuccess, formValidated, formRef, handleSubmit, handleInputChange, handleLogin}) => {

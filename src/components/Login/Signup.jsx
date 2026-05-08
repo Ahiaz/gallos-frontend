@@ -10,7 +10,7 @@ Autor: Jose Ahias Vargas
 Fecha: 2025-07-08
 */
 import signupStyles from './styles/Signup.module.css';
-import styles from '../../styles/general.module.css';
+import styles from '../../styles/General.module.css';
 import LoadingButton from '../common/LoadingButton';
 
 const Signup = ({ signupSuccess, formValidated, formRef, avatarError, avatarPreview, handleSubmit, handleInputChange, handleLogin, handleAvatarChange }) => {

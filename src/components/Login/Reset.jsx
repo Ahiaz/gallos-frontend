@@ -11,7 +11,7 @@ Fecha: 2025-07-08
 */
 
 //import resetStyles from './styles/Reset.module.css';
-import styles from '../../styles/general.module.css';
+import styles from '../../styles/General.module.css';
 
 const Reset = ({ resetSuccess, resetLoading, passwordsMatch, formValidated, sendButtonRef, handleSubmit, handleInputChange, handleLogin}) => {
     
