@@ -1,0 +1,169 @@
+
+/*css: EventsGrid.module.css
+Descripcion: estilos relacionados al EventsGrid
+Autor: Jose Ahias Vargas Pacheco
+*/
+
+.eventsGrid {
+  display: grid;
+  gap: 20px;
+  width: 100%;
+}
+
+/* Configuración específica para el modo Carrusel */
+.carouselMode {
+  display: flex;
+  gap: 20px;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  padding-bottom: 15px;
+  justify-content: flex-start;
+  width: 100%;
+  -webkit-overflow-scrolling: touch; /* Suavidad en iOS */
+}
+
+.carouselMode .gridItem {
+  flex: 0 0 calc(33.333% - 14px);
+  min-width: calc(33.333% - 14px);
+  scroll-snap-align: start;
+}
+
+.eventsGrid:not(.carouselMode) {
+  display: grid;
+  /* El estilo en línea de React manejará el gridTemplateColumns: repeat(1, 1fr) */
+}
+
+
+.carouselItem {
+  scroll-snap-align: start;
+}
+
+/* Estilización del Scrollbar */
+.carouselMode::-webkit-scrollbar {
+  height: 6px;
+}
+
+.carouselMode::-webkit-scrollbar-track {
+  background: #1a1a1a;
+  border-radius: 10px;
+}
+
+.carouselMode::-webkit-scrollbar-thumb {
+  background: #d4af37; /* Color dorado acorde a tu logo El Dorado */
+  border-radius: 10px;
+}
+
+
+.noEvents {
+
+  display: flex;
+
+  flex-direction: column;
+
+  align-items: center;
+
+  justify-content: center;
+
+  padding: 60px 20px;
+
+  background-color: #f9f9f9;
+
+  border: 2px dashed #ddd;  
+
+  border-radius: 12px;
+
+  margin: 20px 0;
+
+  min-height: 200px;
+
+  text-align: center;
+
+}
+
+
+
+.noEvents {
+
+  display: flex;
+
+  flex-direction: column;
+
+  align-items: center;
+
+  justify-content: center;
+
+ 
+
+  height: 320px;
+
+  width: 100%;
+
+ 
+
+  background-color: #1a1a1a;
+
+  border: 2px dashed #333;  
+
+  border-radius: 16px;      
+
+  text-align: center;
+
+  transition: all 0.3s ease;
+
+}
+
+
+
+.noEvents p {
+
+  font-size: 1.1rem;
+
+  color: #888;
+
+  margin: 0;
+
+  font-weight: 500;
+
+}
+
+
+
+.noEvents::before {
+
+  content: '📅';
+
+  font-size: 2.5rem;
+
+  margin-bottom: 10px;
+
+}
+
+
+
+
+/* 2. TABLETS (menos de 1024px) */
+@media (max-width: 1024px) {
+  .carouselMode .gridItem {
+    flex: 0 0 calc(50% - 10px);
+    min-width: calc(50% - 10px);
+  }
+}
+
+/* 3. MOBILE (menos de 600px) */
+@media (max-width: 600px) {
+  .eventsGrid:not(.carouselMode) {
+    grid-template-columns: 1fr !important;
+  }
+.carouselMode {
+    gap: 15px;
+    /* Asegura que el padding no cause scroll horizontal extra innecesario */
+    padding-left: 5px; 
+    padding-right: 20px; 
+  }
+
+  .carouselMode .gridItem {
+    flex: 0 0 85%; /* Un poco más ancho para que no baile tanto */
+    min-width: 85%;
+    scroll-snap-align: center; /* Cambiar a center en mobile ayuda a la UX */
+  }
+}

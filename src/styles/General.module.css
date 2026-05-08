@@ -1,0 +1,473 @@
+/*css: General.module.css
+Descripcion: estilos en comun que se aplican en varios componentes
+*/
+
+.container {
+
+  height: 100vh;
+  width: 100vw;
+  padding: 0 !important;
+}
+
+.primaryBgImage {
+
+  background-image: url("/images/bg-login.jpg");
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;  
+
+}
+
+.secondaryBgImage {
+
+  background-image: url("/images/bg-main.jpg");
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+
+}
+
+.bgSemiTransparent {
+
+  background-color: rgba(255, 255, 255, 0.5);
+
+}
+
+.borderRightBlack {
+
+  border-right: 1px solid black !important;
+
+}
+
+.borderLeftBlack {
+
+  border-left: 1px solid black !important;
+
+}
+
+.labelForm {
+  color: white;
+  padding-bottom: 0.5rem;
+}
+
+.labelCentered {
+  width: 100%;
+  text-align: center !important;
+}
+
+.box {
+
+  background-color: rgba(255, 255, 255, 0.5)
+}
+
+.formContent {
+
+  width: 90%;
+  max-width: 320px;
+
+}
+
+.centerContent {
+
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+
+
+.btnWarning {
+  --bs-btn-bg: #FFD166;             
+  --bs-btn-color: #000;             
+  --bs-btn-border-color: transparent;
+  --bs-btn-hover-bg: #E9C15A;       
+  --bs-btn-hover-color: #000;
+  --bs-btn-active-bg: #CFA94F;      
+  --bs-btn-active-color: #000;
+  
+  background-color: var(--bs-btn-bg);
+  color: var(--bs-btn-color);
+  transition: all 0.3s ease;
+  border: none;
+  padding: 0.5rem 1rem;
+  border-radius: 0.375rem;
+  cursor: pointer;
+}
+
+.btnWarning:hover {
+  background-color: var(--bs-btn-hover-bg);
+  /* Brillo sutil dorado */
+  animation: pulseGold 1.5s infinite;
+}
+
+.btnWarning:disabled {
+  background-color: rgba(255, 209, 102, 0.5); /* Dorado al 50% */
+  color: rgba(0, 0, 0, 0.4);
+  cursor: not-allowed;
+}
+
+.btnDanger {
+  --bs-btn-bg: #EF476F;             
+  --bs-btn-color: white;
+  --bs-btn-border-color: transparent;
+  --bs-btn-hover-bg: #D63D62;       
+  --bs-btn-hover-color: white;
+  --bs-btn-active-bg: #B03250;      
+  
+  background-color: var(--bs-btn-bg);
+  color: var(--bs-btn-color);
+  transition: all 0.3s ease;
+  border: none;
+  padding: 0.5rem 1rem;
+  border-radius: 0.375rem;
+  cursor: pointer;
+}
+
+.btnDanger:hover {
+  background-color: var(--bs-btn-hover-bg);
+  animation: pulseRed 1.5s infinite;
+}
+
+.btnDanger:disabled {
+  background-color: rgba(239, 71, 111, 0.5);
+  color: #ffffffaa;
+  cursor: not-allowed;
+}
+
+
+.btnSuccess {
+  --bs-btn-bg: #06D6A0;             
+  --bs-btn-color: white;
+  --bs-btn-border-color: transparent;
+  --bs-btn-hover-bg: #05B386;       
+  --bs-btn-hover-color: white;
+  --bs-btn-active-bg: #048C69;      
+  --bs-btn-active-color: white;
+  
+  background-color: var(--bs-btn-bg);
+  color: var(--bs-btn-color);
+  transition: all 0.3s ease;
+  border: none;
+  padding: 0.5rem 1rem;
+  border-radius: 0.375rem;
+  cursor: pointer;
+}
+
+.btnSuccess:hover {
+  background-color: var(--bs-btn-hover-bg);
+  animation: pulseGreen 1.5s infinite;
+}
+
+.btnSuccess:disabled {
+  background-color: rgba(6, 214, 160, 0.5);
+  color: #ffffffaa;
+  cursor: not-allowed;
+}
+
+
+.btnInfo {
+  --bs-btn-bg: #118AB2;
+  --bs-btn-color: white;
+  --bs-btn-border-color: transparent;
+  --bs-btn-hover-bg: #0E6E8F;
+  --bs-btn-hover-color: white;
+  --bs-btn-active-bg: #0A526B;
+  --bs-btn-active-color: white;
+  
+  background-color: var(--bs-btn-bg);
+  color: var(--bs-btn-color);
+  transition: all 0.3s ease;
+  border: none;
+  padding: 0.5rem 1rem;
+  border-radius: 0.375rem;
+  cursor: pointer;
+}
+
+.btnInfo:hover {
+  background-color: var(--bs-btn-hover-bg);
+  /* Brillo sutil azul */
+  animation: pulseBlue 1.5s infinite;
+}
+
+.btnInfo:disabled {
+  background-color: rgba(17, 138, 178, 0.5);
+  color: #ffffffaa;
+  cursor: not-allowed;
+}
+
+
+.btnSecondary {
+  /* Paleta Slate / Gray */
+  --bs-btn-bg: #6c757d;             
+  --bs-btn-color: #fff;             
+  --bs-btn-border-color: transparent;
+  --bs-btn-hover-bg: #5a6268;       
+  --bs-btn-hover-color: #fff;
+  --bs-btn-active-bg: #4e555b;      
+  --bs-btn-active-color: #fff;
+  
+  background-color: var(--bs-btn-bg);
+  color: var(--bs-btn-color);
+  transition: all 0.3s ease;
+  border: none;
+  padding: 0.5rem 1rem;
+  border-radius: 0.375rem;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.btnSecondary:hover {
+  background-color: var(--bs-btn-hover-bg);
+  color: var(--bs-btn-hover-color);
+  /* Animación de pulso en gris sutil */
+  animation: pulseGray 1.5s infinite;
+}
+
+.btnSecondary:active {
+  background-color: var(--bs-btn-active-bg);
+}
+
+.btnSecondary:disabled {
+  background-color: rgba(108, 117, 125, 0.5); /* Gris al 50% */
+  color: rgba(255, 255, 255, 0.5);
+  cursor: not-allowed;
+}
+
+.inputNotFocus:focus {
+  box-shadow: none !important;
+  border-color: gray !important;
+  outline: none !important;
+}
+
+.itemDropDown {
+  position: relative;
+  background: transparent !important;
+  /* Quita fondo azul por defecto */
+  color: black !important;
+  transition: background 0.3s ease;
+}
+
+/* Hover: rayita amarilla parpadeante */
+.itemDropDown:hover::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 2px;
+  background: rgb(255, 215, 0);
+  animation: blink 2s infinite;
+}
+
+
+.itemDropDown.active {
+  background: rgb(255, 215, 0) !important;
+  color: black !important;
+}
+
+.customSwitch {
+    display: flex !important;
+    align-items: center !important;
+    padding-left: 0 !important; /* Quitamos el padding de Bootstrap */
+    margin: 0 !important;
+    min-height: auto !important;
+}
+
+
+.customSwitch input:checked {
+    background-color: #ffc107 !important;
+    border-color: #000 !important;
+    background-position: right center;
+    background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='-4 -4 8 8'%3e%3ccircle r='3' fill='%23000000'/%3e%3c/svg%3e") !important;
+}
+
+.customSwitch input {
+    appearance: none;
+    -webkit-appearance: none;
+    cursor: pointer;
+    width: 2.8em !important;
+    height: 1.5em !important;
+    margin-left: 0 !important;
+    margin-top: 0 !important;
+    float: none !important;
+    flex-shrink: 0;
+    background-color: #f1f1f1;
+    border: 1px solid #ced4da;
+    border-radius: 2em;
+    background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='-4 -4 8 8'%3e%3ccircle r='3' fill='%23000000'/%3e%3c/svg%3e") !important;
+    background-repeat: no-repeat;
+    background-position: left center;
+    background-size: contain;
+    transition: background-position 0.15s ease-in-out, background-color 0.15s ease-in-out;
+}
+
+/* El círculo del switch */
+.customSwitch input:focus {
+    box-shadow: 0 0 0 0.25rem rgba(255, 193, 7, 0.25) !important;
+    border-color: #ffc107 !important;
+}
+
+.customSwitch label {
+    margin-left: 12px !important; /* Espacio real entre switch y texto */
+    margin-bottom: 0 !important;
+    cursor: pointer;
+    font-weight: bold;
+    font-size: 0.9rem;
+    line-height: 1.2;
+    display: block;
+}
+
+/* Efecto cuando está activo el texto */
+.textActive {
+    color: #000 !important;
+    text-shadow: 0px 0px 1px rgba(0,0,0,0.2);
+}
+
+
+@keyframes blink {
+
+  0%,
+  50%,
+  100% {
+    opacity: 1;
+  }
+
+  25%,
+  75% {
+    opacity: 0;
+  }
+}
+
+/*Animaciones de sombras para los botones*/
+
+@keyframes pulseGold {
+  0% {
+    box-shadow: 0 0 0 0 rgba(255, 209, 102, 0.7);
+  }
+  70% {
+    box-shadow: 0 0 0 10px rgba(255, 209, 102, 0);
+  }
+  100% {
+    box-shadow: 0 0 0 0 rgba(255, 209, 102, 0);
+  }
+}
+
+@keyframes pulseRed {
+  0% {
+    box-shadow: 0 0 0 0 rgba(239, 71, 111, 0.7);
+  }
+  70% {
+    box-shadow: 0 0 0 10px rgba(239, 71, 111, 0);
+  }
+  100% {
+    box-shadow: 0 0 0 0 rgba(239, 71, 111, 0);
+  }
+}
+
+@keyframes pulseGreen {
+  0% {
+    box-shadow: 0 0 0 0 rgba(6, 214, 160, 0.7);
+  }
+  70% {
+    box-shadow: 0 0 0 10px rgba(6, 214, 160, 0);
+  }
+  100% {
+    box-shadow: 0 0 0 0 rgba(6, 214, 160, 0);
+  }
+}
+
+
+@keyframes pulseBlue {
+  0% {
+    box-shadow: 0 0 0 0 rgba(17, 138, 178, 0.7);
+  }
+  70% {
+    box-shadow: 0 0 0 10px rgba(17, 138, 178, 0);
+  }
+  100% {
+    box-shadow: 0 0 0 0 rgba(17, 138, 178, 0);
+  }
+}
+
+
+@keyframes pulseGray {
+  0% {
+    box-shadow: 0 0 0 0 rgba(108, 117, 125, 0.4);
+  }
+  70% {
+    box-shadow: 0 0 0 10px rgba(108, 117, 125, 0);
+  }
+  100% {
+    box-shadow: 0 0 0 0 rgba(108, 117, 125, 0);
+  }
+}
+
+
+
+@keyframes pulseLink {
+  0% {
+    text-shadow: 0 0 4px rgba(255, 215, 0, 0.4);
+  }
+
+  50% {
+    text-shadow: 0 0 10px rgba(255, 215, 0, 0.9);
+  }
+
+  100% {
+    text-shadow: 0 0 4px rgba(255, 215, 0, 0.4);
+  }
+}
+
+
+/* 📱 Tablets (iPad, Android, etc.) */
+@media only screen 
+  and (min-width: 600px) 
+  and (max-width: 1366px) {
+  
+
+.primaryBgImage {
+
+  background-image: url("/images/bg-login-tablet.jpg");
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center; 
+
+}    
+.secondaryBgImage {
+
+  background-image: url("/images/bg-main-tablet.jpg");
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center; 
+
+}
+}
+
+
+/*mobile*/
+@media (max-width: 768px) {
+
+
+
+.primaryBgImage {
+
+  background-image: url("/images/bg-login-mobile.jpg");
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center; 
+
+}
+
+.secondaryBgImage {
+
+  background-image: url("/images/bg-main-mobile.jpg");
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center; 
+
+}
+
+}

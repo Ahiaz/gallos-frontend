@@ -1,0 +1,36 @@
+/*css: HomeEvents.module.css
+Descripcion: estilos relacionados al homePage
+Autor: Jose Ahias Vargas Pacheco
+*/
+
+.container {
+  padding: 20px;
+  color: #ffffff;
+  overflow-x: hidden;
+}
+
+.eventsRow {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 30px;
+  align-items: start;
+}
+
+
+@media (max-width: 1024px) {
+  .eventsRow {
+    grid-template-columns: 1fr;
+  }
+  
+  .eventsRow > div:first-child,
+  .eventsRow > div:last-child {
+    width: 100%;
+  }
+}
+
+@media (max-width: 600px) {
+
+  .eventsRow {
+  display: block;
+}
+}

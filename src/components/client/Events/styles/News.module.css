@@ -1,0 +1,102 @@
+
+/*css: News.module.css
+Descripcion: estilos relacionados al NewsSection
+Autor: Jose Ahias Vargas Pacheco
+*/
+
+.newsSection {
+  margin-top: 40px;
+}
+
+.newsSection > div {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 30px;
+}
+
+.newsGrid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 30px;
+}
+
+.newsCard {
+  display: flex;
+  gap: 20px;
+  background: #1a1a1a;
+  padding: 15px;
+  border-radius: 12px;
+  align-items: center;
+}
+
+.newsCard img {
+  width: 180px;
+  height: 120px;
+  object-fit: cover;
+  border-radius: 8px;
+}
+
+
+.newsContent {
+  max-width: 500px;
+}
+
+.newsTitle {
+  font-size: 22px;
+  font-weight: 600;
+  margin-bottom: 12px;
+  text-align: center;
+}
+
+.newsText {
+  color: #b5b5b5;
+  line-height: 1.6;
+  font-size: 15px;
+}
+
+
+.noNewsFullWidth {
+  grid-column: 1 / -1; 
+  
+  display: flex !important;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  
+  height: 320px; 
+  width: 100%;
+  
+  background-color: #1a1a1a; 
+  border: 2px dashed #333;   
+  border-radius: 16px;       
+  text-align: center;
+  transition: all 0.3s ease;
+  margin-top: 10px;
+}
+
+.icon {
+  font-size: 2rem;
+}
+
+.noNewsFullWidth p {
+  font-size: 1.1rem;
+  color: #888;
+  margin: 0;
+  font-weight: 500;
+}
+
+.noEvents::before {
+  font-size: 2.5rem;
+  margin-bottom: 10px;
+  opacity: 0.5;
+}
+
+@media (max-width: 768px) {
+
+  .newsGrid {
+    grid-template-columns: 1fr;
+  }
+}
+
+
+ 

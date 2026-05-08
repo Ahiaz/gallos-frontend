@@ -1,0 +1,496 @@
+.overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(0, 0, 0, 0.6);
+  /* Color oscuro traslúcido */
+  cursor: pointer;
+  animation: fadeIn 0.3s ease;
+}
+
+.chatContainer {
+
+  background: rgba(255, 74, 74, 0.1);
+  padding: 8px;
+  text-align: center;
+  border-bottom: 1px solid rgba(255, 74, 74, 0.2)
+}
+
+.chatSidebar {
+  position: fixed;
+  top: 0;
+  right: 0;
+  width: 300px;
+  height: 100vh;
+  background: #141414;
+  border-left: 2px solid #d4af37;
+  z-index: 3000;
+  transition: transform 0.3s ease-in-out;
+  box-shadow: 10px 0 20px rgba(0, 0, 0, 0.5);
+  display: flex;
+  /* IMPORTANTE */
+  flex-direction: column;
+  overflow: hidden;
+  /* IMPORTANTE */
+}
+
+.chatSidebar::-webkit-scrollbar {
+  display: none;
+  /* Oculta scroll en Chrome/Safari */
+}
+
+.closed {
+  transform: translateX(100%);
+}
+
+.open {
+  transform: translateX(0);
+}
+
+
+
+.chatActionWrapper {
+
+  position: absolute;
+  right: 7px;
+  top: 5px;
+  z-index: 10;
+
+
+}
+
+.chatContainerWrapper {
+  flex: 1;
+  height: calc(100vh - 60px);
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+.chatToggleButton {
+  background: #1a1a1a;
+  color: #d4af37;
+  /* El dorado de tu logo */
+  border: 1px solid #d4af37;
+  border-radius: 5px;
+  font-weight: bold;
+  text-transform: uppercase;
+  font-size: 12px;
+  letter-spacing: 1px;
+  transition: all 0.3s ease;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  box-shadow: 0 0 10px rgba(212, 175, 55, 0.2);
+}
+
+.chatToggleButton:hover {
+  background: #1a1a1a;
+  color: #d4af37;
+  box-shadow: 0 0 15px rgba(212, 175, 55, 0.6);
+  /* Brillo dorado */
+  border: 1px solid #d4af37;
+  border-radius: 5px;
+  /* Pequeño salto al pasar el mouse */
+}
+
+
+.chatInputTextarea {
+  width: 100%;
+  background: #252529;
+  border: 1px solid #3f3f46;
+  color: white;
+  border-radius: 4px;
+  padding: 10px 40px 10px 12px;
+  /* Espacio extra a la derecha para el emoji */
+  font-size: 0.9rem;
+  resize: none;
+  /* Bloqueamos que el usuario lo estire manualmente */
+  line-height: 1.4;
+  max-height: 120px;
+  overflow-y: auto;
+  transition: height 0.1s ease;
+}
+
+/* Ajuste del scrollbar interno del textarea para que sea discreto */
+.chatInputTextarea::-webkit-scrollbar {
+  width: 4px;
+}
+
+.chatInputTextarea::-webkit-scrollbar-thumb {
+  background: #d4af37;
+  border-radius: 10px;
+}
+
+
+/* Cabecera del selector */
+.emojiPickerHeader {
+  order: -1;
+  /* Fuerza a que sea el primer elemento arriba */
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 15px;
+  background: #18181b;
+  border-bottom: 1px solid #2f2f35;
+}
+
+.emojiPickerHeader span {
+  color: #adadb8;
+  font-size: 0.75rem;
+  font-weight: bold;
+  text-transform: uppercase;
+}
+
+/* Botón de cerrar X */
+.closeEmojiBtn {
+  background: transparent;
+  border: none;
+  color: #efeff1;
+  font-size: 1rem;
+  cursor: pointer;
+  line-height: 1;
+  padding: 0 4px;
+  transition: color 0.2s;
+}
+
+.closeEmojiBtn:hover {
+  color: #d4af37;
+  /* El dorado de EL DORADO */
+}
+
+
+
+.inputWrapper {
+  display: flex;
+  align-items: flex-end;
+  gap: 8px;
+  width: 100%;
+}
+
+/* Envolvemos el input y la carita para que la carita quede "dentro" del input visualmente */
+.inputWithActions {
+  position: relative;
+  flex: 1;
+  display: flex;
+  align-items: center;
+}
+
+.chatInput {
+  width: 100%;
+  background: #1f1f23;
+  border: 2px solid #2f2f35;
+  border-radius: 4px;
+  color: white;
+  padding: 10px 40px 10px 12px;
+
+  font-size: 0.9rem;
+  outline: none;
+  transition: all 0.2s;
+}
+
+.chatInput:focus {
+  border: 2px solid #9147ff;
+  background: #000;
+}
+
+.chatInput:disabled {
+  background: #1a1a1a;
+  color: #666;
+  cursor: not-allowed;
+  border: 1px solid #333;
+}
+
+/* Botón de carita dentro del input */
+.emojiToggleBtn {
+  position: absolute;
+  right: 10px;
+  /* Separación desde el borde derecho */
+  background: transparent;
+  border: none;
+  color: #adadb8;
+  cursor: pointer;
+  font-size: 1.2rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+  z-index: 5;
+  /* Asegura que esté sobre el texto */
+}
+
+.emojiToggleBtn:hover {
+  color: #fff;
+}
+
+.emojiPickerContainer :global(.epr-emoji-list),
+.emojiPickerContainer :global(.epr-body) {
+    /* Firefox */
+    scrollbar-width: thin;
+    scrollbar-color: #2f2f35 transparent;
+}
+
+/* Webkit (Chrome, Edge, Safari) */
+.emojiPickerContainer :global(.epr-emoji-list::-webkit-scrollbar),
+.emojiPickerContainer :global(.epr-body::-webkit-scrollbar) {
+    width: 6px;
+}
+
+.emojiPickerContainer :global(.epr-emoji-list::-webkit-scrollbar-track),
+.emojiPickerContainer :global(.epr-body::-webkit-scrollbar-track) {
+    background: transparent;
+}
+
+.emojiPickerContainer :global(.epr-emoji-list::-webkit-scrollbar-thumb),
+.emojiPickerContainer :global(.epr-body::-webkit-scrollbar-thumb) {
+    background: #2f2f35;
+    border-radius: 10px;
+}
+
+.emojiPickerContainer :global(.epr-emoji-list::-webkit-scrollbar-thumb:hover),
+.emojiPickerContainer :global(.epr-body::-webkit-scrollbar-thumb:hover) {
+    background: #d4af37; /* El dorado de EL DORADO */
+    box-shadow: 0 0 5px rgba(212, 175, 55, 0.5);
+}
+
+.twitchChat {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  /* Ocupa el 100% del sidebar */
+  width: 100%;
+  overflow: hidden;
+  /* Evita que el contenedor padre crezca */
+}
+
+
+.chatBody {
+  flex: 1;
+  /* Esto hace que el cuerpo tome todo el espacio disponible */
+  overflow-y: auto;
+  /* Habilita el scroll solo aquí */
+  padding: 10px;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  /* Para que los mensajes fluyan de arriba a abajo */
+}
+
+
+.chatBody::-webkit-scrollbar {
+  width: 6px;
+  /* Barra más delgada y elegante */
+}
+
+.chatBody::-webkit-scrollbar-track {
+  background: transparent;
+  /* Fondo transparente para que no ensucie el diseño */
+}
+
+.chatBody::-webkit-scrollbar-thumb {
+  background: #2f2f35;
+  /* Color gris oscuro para que sea discreto */
+  border-radius: 10px;
+  border: 1px solid transparent;
+  /* Espaciado sutil */
+}
+
+.chatBody::-webkit-scrollbar-thumb:hover {
+  background: #d4af37;
+  /* ¡Dorado cuando el usuario pasa el mouse! */
+  box-shadow: 0 0 5px rgba(212, 175, 55, 0.5);
+}
+
+/* Soporte para Firefox */
+.chatBody {
+  scrollbar-width: thin;
+  scrollbar-color: #2f2f35 transparent;
+}
+
+
+/* Asegurar que el footer sea relativo para el posicionamiento del picker */
+.chatFooter {
+  flex-shrink: 0;
+  /* IMPORTANTE: Evita que el footer se achique o se desplace */
+  padding: 12px;
+  background: #18181b;
+  /* Asegúrate que sea el mismo o ligeramente distinto */
+  border-top: 1px solid #2f2f35;
+  /* ESTA ES LA DIVISIÓN QUE TE FALTA */
+  position: relative;
+}
+
+.sendBtn {
+  background: #9147ff;
+  /* El color morado icónico de Twitch */
+  color: white;
+  /* Texto blanco para máximo contraste */
+  border-radius: 4px;
+  /* Bordes apenas redondeados, no circulares */
+  font-weight: 600;
+  /* Letra semi-negrita para que resalte */
+  font-size: 0.9rem;
+  /* Fuente un poco más pequeña que el estándar */
+  cursor: pointer;
+  /* Cambia el cursor a "manito" al pasar por encima */
+  transition: background 0.2s;
+
+  padding: 10px 20px 10px 12px;
+  /* Animación suave cuando cambia el color */
+}
+
+/* Efecto al pasar el mouse (Hover) */
+.sendBtn:hover {
+  background: #772ce8;
+  /* Un morado más oscuro cuando pones el mouse */
+  border-color: #772ce8;
+}
+
+/* Estilo cuando el botón está desactivado */
+.sendBtn:disabled {
+  background: #3a3a3d;
+  /* Gris oscuro si el input está vacío */
+  color: #adadb8;
+  /* Texto gris tenue */
+  cursor: not-allowed;
+  /* Cursor de "prohibido" */
+  transition: all 0.3s ease;
+}
+
+.closeBtnContainer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 15px;
+  border-bottom: 1px solid #2f2f35;
+  background: #18181b;
+}
+
+.sidebarTitle {
+  color: #d4af37;
+  /* Dorado del logo */
+  font-size: 0.75rem;
+  font-weight: bold;
+  letter-spacing: 1px;
+}
+
+.closeBtn {
+  background: transparent !important;
+  border: none !important;
+  color: #efeff1 !important;
+  font-size: 1.2rem !important;
+  padding: 0 !important;
+  line-height: 1;
+  transition: color 0.2s ease;
+  box-shadow: none !important;
+}
+
+.closeBtn:hover {
+  color: #d4af37 !important;
+  /* Cambia a dorado al pasar el mouse */
+}
+
+.adminActions {
+  display: inline-flex;
+  /* Para que los iconos no fuercen línea nueva */
+  align-items: center;
+  gap: 4px;
+  margin-right: 6px;
+  vertical-align: middle;
+}
+
+.banBtn,
+.unbanBtn {
+  background: none;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+  line-height: 1;
+  display: flex;
+  align-items: center;
+}
+
+.blockedBadge {
+  background-color: #ff4a4a;
+  color: white;
+  font-size: 0.6rem;
+  font-weight: bold;
+  padding: 2px 6px;
+  border-radius: 4px;
+  margin-right: 8px;
+  vertical-align: middle;
+  text-transform: uppercase;
+  display: inline-block;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+/* Opcional: Si quieres que el nombre del usuario bloqueado se vea un poco opaco */
+.chatLineHasBlocked .chatUser {
+  opacity: 0.7;
+  color: #fff;
+}
+
+/* Estilo base para el nombre de usuario */
+.chatUser {
+  font-weight: 800;
+  /* Más grosor para que destaque */
+  font-size: 0.9rem;
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
+  /* Sombra para legibilidad */
+}
+
+.chatMessage {
+  color: #efeff1;
+  font-size: 0.9rem;
+  margin-left: 4px;
+}
+
+/* ADMINISTRADOR: Dorado Premium (Efecto Oro) */
+.userAdmin {
+  color: #d4af37 !important;
+  /* Dorado EL DORADO */
+  background: rgba(212, 175, 55, 0.1);
+  /* Fondo dorado muy sutil */
+  padding: 1px 4px;
+  border-radius: 3px;
+  border: 1px solid rgba(212, 175, 55, 0.2);
+}
+
+/* CLIENTE: Un color que sea legible pero secundario */
+.userClient {
+  color: #adadb8;
+  /* Gris claro/lavanda (estilo Twitch) */
+  /* Otra opción es un blanco hueso: #efeff1 */
+}
+
+/* Estilo para la línea de chat en general */
+.chatLine {
+  padding: 4px 12px;
+  margin-bottom: 2px;
+  word-wrap: break-word;
+  /* Importante para que no rompa el layout */
+  overflow-wrap: break-word;
+  font-size: 0.85rem;
+  transition: background 0.2s ease;
+  line-height: 1.5;
+}
+
+.chatLine:hover {
+  background: rgba(255, 255, 255, 0.05);
+  /* Resalta el mensaje al pasar el mouse */
+}
+
+
+.blockedBadgeHeader {
+  background-color: #ff4a4a;
+  color: white;
+  font-size: 0.65rem;
+  font-weight: bold;
+  padding: 3px 10px;
+  border-radius: 4px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  display: inline-block;
+}

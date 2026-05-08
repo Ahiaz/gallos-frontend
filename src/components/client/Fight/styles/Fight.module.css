@@ -1,0 +1,93 @@
+
+/*css: Fight.module.css
+Descripcion: estilos relacionados al FightScoreBoard
+Autor: Jose Ahias Vargas Pacheco
+*/
+
+.scoreboardContainer {
+    background: rgba(255, 255, 255, 0.9);
+    border-radius: 8px;
+    overflow: hidden;
+    font-family: 'Arial', sans-serif;
+}
+
+.topInfoBar {
+    background: #e0e0e0;
+    display: flex;
+    justify-content: space-between;
+    padding: 5px 15px;
+    font-weight: bold;
+    font-size: 1.2rem;
+    border-bottom: 2px solid #ccc;
+}
+
+.infoBadge .label { color: #666; }
+.infoBadge .value { color: #28a745; margin-left: 5px; }
+
+.scoreBody {
+    padding: 10px 0;
+    background: #f8f9fa;
+}
+
+.fighterName {
+    font-weight: 800;
+    text-transform: uppercase;
+    font-size: 1.1rem;
+    margin-bottom: 5px;
+}
+
+.bigScore {
+    font-size: 3rem;
+    font-weight: 900;
+    color: #333;
+    line-height: 1;
+}
+
+.vsText {
+    font-size: 1.5rem;
+    font-weight: 900;
+    color: #28a745;
+}
+
+.scoreGrid {
+    display: flex;
+    gap: 2px;
+}
+
+.scoreCell {
+    width: 20px;
+    height: 25px;
+    background: #ddd;
+    border: 1px solid #bbb;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.8rem;
+    font-weight: bold;
+}
+
+.cellRed { background: #dc3545 !important; color: white; border-color: #a71d2a; }
+.cellGreen { background: #28a745 !important; color: white; border-color: #1e7e34; }
+
+.redDot { height: 12px; width: 12px; background: #dc3545; border-radius: 50%; display: inline-block; }
+.greenDot { height: 12px; width: 12px; background: #28a745; border-radius: 50%; display: inline-block; }
+
+.weightBadge {
+    background: rgba(255, 255, 255, 0.1);
+    color: #ffd700;
+    font-weight: bold;
+    font-size: 0.9rem;
+    padding: 2px 8px;
+    border-radius: 4px;
+    margin-top: 5px;
+    display: inline-block;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+} 
+
+
+ @media (max-width: 768px) {
+.topInfoBar {
+
+    font-size: 0.9rem;
+}
+}

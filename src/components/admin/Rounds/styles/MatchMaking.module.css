@@ -1,0 +1,12 @@
+
+/*css: MatchMaking.module.css
+Descripcion: estilos relacionados al MatchMaking
+Autor: Jose Ahias Vargas Pacheco
+*/
+
+.selectStyle  {
+        max-width: 200px;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+        overflow: hidden;
+    }

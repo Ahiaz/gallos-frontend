@@ -1,0 +1,32 @@
+/*css: Login.module.css
+Descripcion: estilos que solo se aplican al componente Login
+*/
+
+
+.link {
+  text-decoration: none;
+  color: rgba(0, 0, 0, 0.6);
+  transition: color 0.3s ease, text-shadow 0.3s ease;
+
+}
+
+.link:hover {
+  color: #bba630;
+
+}
+
+
+.hr {
+  display: flex;
+  align-items: center;
+  text-align: center;
+  margin: 20px 0;
+}
+
+.hr::before,
+.hr::after {
+  content: "";
+  flex: 1;
+  border-bottom: 1px solid #ffffff;
+}
+

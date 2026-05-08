@@ -1,0 +1,292 @@
+/*css: BetModal.module.css
+Descripcion: estilos relacionados al BetModal
+Autor: Jose Ahias Vargas Pacheco
+*/
+
+.betModalOverlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, .75);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+.betModal {
+  width: 95%;            /* Cambiado de 900px a 95% para móviles */
+  max-width: 900px;      /* Mantiene el tamaño en desktop */
+  background: #1b1c21;
+  border-radius: 18px;
+  padding: 20px;         /* Un poco menos de padding para ganar espacio */
+  border: 2px solid #d6ad4c;
+  position: relative;
+  max-height: 90vh;      /* Evita que se salga de la pantalla verticalmente */
+  overflow-y: auto;      /* Scroll interno si el contenido es muy alto */
+}
+
+.closeBtn {
+  position: absolute;
+  top: 15px;
+  right: 15px;
+  background: transparent;
+  border: 2px solid white;
+  color: white;
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.betContainer {
+  display: flex;
+  flex-direction: row;   /* Por defecto uno al lado del otro */
+  gap: 20px;             /* Reducido para que quepa mejor */
+}
+
+.leftSide, .rightSide {
+  flex: 1;
+}
+
+.sectionTitle {
+  color: white;
+  margin-bottom: 20px;
+  font-size: 1.1rem;
+}
+
+/* Columna de Apuestas (Mesa) */
+.tableBetContainer {
+  display: flex;
+  gap: 15px;
+  margin-top: 20px;
+}
+
+.sideColumn {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.headerRed, .headerGreen {
+  width: 100%;
+  padding: 10px;
+  border-radius: 8px;
+  font-weight: 900;
+  text-align: center;
+  font-size: 1.1rem;
+  letter-spacing: 1px;
+  color: white;
+}
+
+.headerRed { background-color: #a30f12; }
+.headerGreen { background-color: #1fa857; }
+
+/* Cápsulas de Selección */
+.oddsCapsule {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 12px;
+  background-color: #1b1c21;
+  border: 1px solid #d6ad4c;
+  border-radius: 8px;
+  cursor: pointer;
+  width: 100%;
+  min-height: 45px;
+  transition: all 0.2s ease;
+}
+
+.capsuleLeft {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  white-space: nowrap;
+  color: #ffffff;
+  font-weight: bold;
+  font-size: 0.85rem;
+}
+
+.iconRed { color: #ff4d4d; }
+.iconGreen { color: #2ecc71; }
+
+.capsuleValue {
+  color: #888888;
+  font-size: 0.8rem;
+  margin-left: auto;
+}
+
+/* Estados de Selección */
+.capsuleActive {
+  background-color: #d6ad4c !important;
+  border-color: #ffffff !important;
+}
+
+.capsuleActive .capsuleLeft, 
+.capsuleActive .capsuleValue,
+.capsuleActive .iconRed,
+.capsuleActive .iconGreen {
+  color: #1b1c21 !important;
+}
+
+.oddsCapsule:hover:not(.capsuleActive) {
+  background-color: rgba(255, 255, 255, 0.05);
+  border-color: #fff;
+}
+
+/* Lado Derecho: Montos e Input */
+.amountGrid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+  margin-bottom: 15px;
+}
+
+.amountGrid button {
+  background: #caa64b;
+  border: none;
+  padding: 12px;
+  border-radius: 10px;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.activeAmount {
+  background: #fff !important;
+  color: #1b1c21 !important;
+}
+
+.amountInput {
+  width: 100%;
+  padding: 12px;
+  border-radius: 10px;
+  border: none;
+  margin-bottom: 20px;
+  background: #caa64b;
+  font-weight: bold;
+  outline: none;
+}
+
+.amountInput::placeholder { color: #555; }
+
+/* Ocultar flechas input number */
+.amountInput::-webkit-outer-spin-button,
+.amountInput::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+.betSubmit {
+  width: 100%;
+  background: #333; /* Gris neutro */
+  border: none;
+  padding: 15px;
+  border-radius: 12px;
+  font-size: 18px;
+  font-weight: bold;
+  color: white;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+/* Color cuando el lado seleccionado es ROJO */
+.btnRed {
+  background: #a30f12 !important;
+  box-shadow: 0 0 20px rgba(163, 15, 18, 0.5);
+  border: 1px solid #ff4d4d;
+}
+
+/* Color cuando el lado seleccionado es VERDE */
+.btnGreen {
+  background: #21a659 !important;
+  box-shadow: 0 0 20px rgba(33, 166, 89, 0.5);
+  border: 1px solid #2ecc71;
+}
+
+.betSubmit:disabled {
+  background: #686868;
+  opacity: 0.5;
+  cursor: not-allowed;
+  box-shadow: none;
+  border: none;
+
+}
+
+/* Efecto de presión */
+.betSubmit:active:not(:disabled) {
+  transform: scale(0.96);
+}
+.totalPlaying {
+  margin-top: 20px;
+  color: #d6ad4c;
+  font-weight: bold;
+}
+
+/* --- MEDIA QUERIES PARA MÓVIL --- */
+
+@media (max-width: 768px) {
+  .betContainer {
+    flex-direction: column; /* Apila Columna 1 arriba y Columna 2 abajo */
+    gap: 25px;
+  }
+
+  .betModal {
+    padding: 15px;
+    margin: 10px;
+  }
+
+  .sectionTitle {
+    text-align: center;
+    font-size: 1rem;
+    margin-bottom: 15px;
+  }
+
+  /* Ajuste de las cápsulas para que no se vean apretadas */
+  .tableBetContainer {
+    gap: 10px;
+  }
+
+  .capsuleLeft {
+    font-size: 0.75rem; /* Texto más pequeño en móvil */
+    gap: 5px;
+  }
+
+  .capsuleValue {
+    font-size: 0.7rem;
+  }
+
+  .headerRed, .headerGreen {
+    font-size: 0.9rem;
+    padding: 8px;
+  }
+
+  /* Ajuste de los botones de monto */
+  .amountGrid {
+    grid-template-columns: repeat(3, 1fr); /* 3 columnas de botones en móvil para ahorrar espacio */
+    gap: 8px;
+  }
+
+  .amountGrid button {
+    padding: 10px 5px;
+    font-size: 0.8rem;
+  }
+
+  .betSubmit {
+    font-size: 16px;
+    padding: 12px;
+  }
+}
+
+/* Para pantallas muy pequeñas (iPhone SE, etc) */
+@media (max-width: 400px) {
+  .tableBetContainer {
+    flex-direction: column; /* Incluso las manos (Rojo/Verde) se apilan */
+  }
+  
+  .amountGrid {
+    grid-template-columns: 1fr 1fr; /* Volvemos a 2 columnas si es muy angosto */
+  }
+}

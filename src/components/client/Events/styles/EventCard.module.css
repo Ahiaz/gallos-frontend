@@ -1,0 +1,25 @@
+
+/*css: EventCard.module.css
+Descripcion: estilos relacionados al EventCard
+Autor: Jose Ahias Vargas Pacheco
+*/
+
+.eventCard {
+  width: 100%;
+  height: 320px; 
+  border-radius: 16px;
+  overflow: hidden;
+  background-color: #1a1a1a;
+  transition: transform 0.3s ease;
+}
+
+.eventCard img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover; /* Esto evita que la imagen se vea estirada internamente */
+  display: block;
+}
+
+.eventCard:hover {
+  transform: scale(1.03);
+}

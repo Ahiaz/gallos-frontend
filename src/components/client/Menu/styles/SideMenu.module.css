@@ -1,0 +1,170 @@
+/*css: SideMenu.module.css
+Descripcion: estilos que solo se aplican al SideMenu
+Autor: Jose Ahias Vargas Pacheco
+*/
+
+
+.overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(0, 0, 0, 0.6); /* Color oscuro traslúcido */
+  backdrop-filter: blur(2px);    /* Opcional: desenfoque ligero */
+  z-index: 2500;                 /* Por debajo del menú, sobre el contenido */
+  cursor: pointer;
+  animation: fadeIn 0.3s ease;
+}
+
+
+.sideMenu {
+  position: fixed;
+  top: 0;
+  right: 0;
+  width: 320px;
+  height: 100vh;
+  background: linear-gradient(180deg, #111 0%, #171717 100%);
+  border-left: 1px solid rgba(212, 175, 55, 0.45);
+  z-index: 3000;
+  transition: transform 0.3s ease-in-out;
+  box-sizing: border-box;
+  overflow-x: hidden;
+  overflow-y: auto;
+  box-shadow: -18px 0 45px rgba(0, 0, 0, 0.55);
+}
+
+.sideMenu::-webkit-scrollbar {
+  display: none; /* Oculta scroll en Chrome/Safari */
+}
+
+
+.closed {
+  transform: translateX(100%);
+}
+
+
+.open {
+  transform: translateX(0);
+}
+
+.navList {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  padding: 18px;
+}
+
+.menuHeader {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  margin: 4px 0 12px;
+  padding: 0 6px 12px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  color: #fff;
+}
+
+.menuHeader span {
+  font-size: 0.78rem;
+  font-weight: 800;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+
+.menuHeader small {
+  color: rgba(255, 255, 255, 0.48);
+}
+
+.navLink {
+  display: flex !important;
+  align-items: center;
+  gap: 12px;
+  color: rgba(255, 255, 255, 0.72) !important;
+  padding: 12px 14px !important;
+  border: 1px solid transparent;
+  border-radius: 10px;
+  transition: all 0.2s ease;
+  font-size: 14px;
+  font-weight: 700;
+}
+
+.navLink i {
+  width: 20px;
+  color: #d4af37;
+  font-size: 1rem;
+}
+
+.navLink span {
+  line-height: 1.2;
+}
+
+.navLink:hover {
+  background: rgba(255, 255, 255, 0.06);
+  border-color: rgba(212, 175, 55, 0.18);
+  color: #fff !important;
+  transform: translateX(-4px);
+}
+
+.activeLink {
+  background: rgba(212, 175, 55, 0.14) !important;
+  border-color: rgba(212, 175, 55, 0.4);
+  color: #f4d77c !important;
+}
+
+.logoutLink {
+  margin-top: auto;
+  color: rgba(255, 255, 255, 0.72) !important;
+}
+
+.logoutLink:hover {
+  color: #fff !important;
+  border-color: rgba(239, 71, 111, 0.35);
+  background: rgba(239, 71, 111, 0.12);
+}
+
+.closeBtnContainer {
+  display: flex;
+  justify-content: flex-end;
+  margin-bottom: 10px;
+}
+
+.closeBtn {
+
+border-radius: 50%;
+width: 50px; 
+height: 50px;
+color:  #d4af37;
+border-color: rgba(212, 175, 55, 0.35);
+}
+
+
+@media (max-width: 768px) {
+.sideMenu {
+    width: 100vw;
+    border-left: none;
+  }
+
+  .closeBtnContainer {
+    display: flex; 
+  }
+
+.sideMenu :global(.nav) {
+    width: 100%;
+    padding: 0 !important;
+  }
+
+
+.navLink {
+    font-size: 17px;
+    padding: 18px !important;
+    text-align: center;
+    border-bottom: 1px solid rgba(212, 175, 55, 0.1);
+  }
+
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}

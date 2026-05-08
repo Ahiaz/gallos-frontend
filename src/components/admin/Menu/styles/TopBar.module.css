@@ -1,0 +1,127 @@
+/*css: TopBar.module.css
+Descripcion: estilos que solo se aplican al TopBar
+Autor: Jose Ahias Vargas Pacheco
+*/
+
+.navbar {
+  background: linear-gradient(90deg, #0f0f0f 0%, #1a1a1a 50%, #0f0f0f 100%);
+  padding: 20px 0;
+  border-bottom: 1px solid rgba(255,255,255,0.05);
+  z-index: 1000; /* Asegura que el topbar esté siempre arriba del sideMenu */
+  position: sticky;
+  top: 0;
+}
+
+
+
+.brandContainer {
+  display: flex;
+  flex-direction: column;
+  line-height: 1;
+}
+
+.title {
+  font-size: clamp(24px, 5vw, 42px);;
+  font-weight: 800;
+  letter-spacing: 2px;
+  display: flex;
+  align-items: center;
+}
+
+.logoWhite {
+  color: #ffffff;
+  margin-right: 6px;
+}
+
+/* DORADO dorado */
+.logoGold {
+  background: linear-gradient(180deg, #d4af37, #b8860b);
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.subtitle {
+  font-size: 10px;
+  font-weight: 400;
+  color: #aaa;
+  letter-spacing: 1px;
+  margin-top: 2px;
+}
+
+.userInfo {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  color: #ddd;
+  font-size: 14px;
+}
+
+.userInfo i {
+  color: #d4af37;
+}
+
+.balance {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  background: #1f1f1f;
+  padding: 6px 14px;
+  border-radius: 8px;
+  border: 1px solid #333;
+}
+
+.balance i {
+  font-size: 18px;
+  color: #28a745;
+}
+
+.balance strong {
+  font-size: 16px;
+  color: #fff;
+}
+
+.available {
+  font-size: 10px;
+  color: #aaa;
+  text-transform: uppercase;
+}
+
+.menuBtn {
+  border: 1px solid #d4af37 !important;
+  color: #d4af37 !important;
+  font-weight: 500;
+  transition: 0.3s ease;
+}
+
+.menuBtn:hover {
+  background: #d4af37 !important;
+  color: #111 !important;
+}
+
+.navContainer {
+    display: flex;                 
+    margin-left: auto;              
+    align-items: center;            
+    gap: 1.5rem;                   
+}
+
+
+
+@media (max-width: 768px) {
+  .userInfo span, .available, .balance {
+    display: none;
+  }
+
+  .navContainer {
+    display: flex;                 
+    margin-left: auto;              
+    align-items: center;            
+    gap: 0;                   
+}
+  
+  
+  .subtitle {
+    font-size: 8px;
+    letter-spacing: 0px;
+  }
+}

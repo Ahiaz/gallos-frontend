@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700;900&display=swap" rel="stylesheet">
+  <title>Scorebar Pro - Palenque</title>
+  <style>
+    body { font-family: 'Inter', sans-serif; }
+    .glass-effect { background: linear-gradient(180deg, rgba(24, 24, 27, 0.95) 0%, rgba(9, 9, 11, 0.98) 100%); }
+  </style>
+</head>
+<body class="bg-zinc-900 min-h-screen flex items-center justify-center p-4">
+
+  <div class="flex flex-col items-center w-full max-w-5xl">
+    
+    <div class="flex items-stretch h-8 mb-1 gap-1">
+      <div class="flex items-center px-4 bg-zinc-100 text-black font-black uppercase text-xs skew-x-[-10deg]">
+        <span class="skew-x-[10deg]">Pelea 15</span>
+      </div>
+      <div class="flex items-center px-8 bg-zinc-800/90 border-t border-x border-white/20 text-white font-bold uppercase text-[10px] tracking-[0.2em] skew-x-[-10deg]">
+        <span class="skew-x-[10deg]">Palenque de Pachuca <span class="text-zinc-500 mx-2">|</span> 6 de Diciembre</span>
+      </div>
+      <div class="flex items-center px-4 bg-emerald-600 text-white font-black uppercase text-xs skew-x-[-10deg]">
+        <span class="skew-x-[10deg]">Ronda 2</span>
+      </div>
+    </div>
+
+    <div class="relative flex items-center w-full h-20 glass-effect border border-white/10 shadow-2xl overflow-hidden">
+      
+      <div class="flex flex-1 items-center justify-end pr-6 gap-4">
+        <div class="flex flex-col items-end">
+          <h2 class="text-2xl font-black italic text-white uppercase leading-none tracking-tighter">Los Churritos</h2>
+          <div class="flex items-center gap-2 mt-1">
+            <span class="text-[10px] font-bold text-zinc-500 uppercase tracking-widest">Apuestas abiertas</span>
+            <div class="w-3 h-3 bg-red-600 rounded-full animate-pulse border-2 border-red-950"></div>
+          </div>
+        </div>
+        <div class="w-2 h-10 bg-red-600 shadow-[0_0_15px_rgba(220,38,38,0.5)]"></div>
+        <div class="text-6xl font-black text-white tabular-nums drop-shadow-lg">9</div>
+      </div>
+
+      <div class="flex flex-col items-center justify-center px-6 h-full bg-zinc-100 border-x-4 border-emerald-500">
+        <span class="text-2xl font-black text-black leading-none">VS</span>
+      </div>
+
+      <div class="flex flex-1 items-center justify-start pl-6 gap-4">
+        <div class="text-6xl font-black text-white tabular-nums drop-shadow-lg">8</div>
+        <div class="w-2 h-10 bg-emerald-500 shadow-[0_0_15px_rgba(16,185,129,0.5)]"></div>
+        <div class="flex flex-col items-start">
+          <h2 class="text-2xl font-black italic text-white uppercase leading-none tracking-tighter">Chamacos Pollito</h2>
+          <span class="text-[10px] font-bold text-emerald-500 uppercase tracking-widest mt-1">Visitante</span>
+        </div>
+      </div>
+
+      <div class="absolute bottom-0 left-0 right-0 h-[2px] bg-gradient-to-r from-red-600 via-zinc-800 to-emerald-500"></div>
+    </div>
+
+    <div class="flex justify-between w-full mt-2 px-2 gap-8">
+      
+      <div class="flex items-center gap-2">
+        <span class="text-[10px] font-black text-zinc-400 uppercase tracking-widest">Puntos</span>
+        <div class="flex gap-1">
+          <div class="w-8 h-6 bg-zinc-800 border border-white/10 flex items-center justify-center text-xs font-bold text-white">3</div>
+          <div class="w-8 h-6 bg-zinc-800 border border-white/10 flex items-center justify-center text-xs font-bold text-white">3</div>
+          <div class="w-8 h-6 bg-zinc-800 border border-white/10 flex items-center justify-center text-xs font-bold text-white">0</div>
+          <div class="w-8 h-6 bg-zinc-900/50 border border-white/5"></div>
+          <div class="w-8 h-6 bg-zinc-900/50 border border-white/5"></div>
+          <div class="w-8 h-6 bg-zinc-900/50 border border-white/5"></div>
+          <div class="w-8 h-6 bg-zinc-900/50 border border-white/5"></div>
+          <div class="w-8 h-6 bg-zinc-900/50 border border-white/5"></div>
+          <div class="w-8 h-6 bg-zinc-900/50 border border-white/5"></div>
+          <div class="w-8 h-6 bg-zinc-900/50 border border-white/5"></div>
+        </div>
+      </div>
+
+      <div class="flex items-center gap-2">
+        <div class="flex gap-1">
+          <div class="w-8 h-6 bg-zinc-800 border border-white/10 flex items-center justify-center text-xs font-bold text-white">3</div>
+          <div class="w-8 h-6 bg-zinc-800 border border-white/10 flex items-center justify-center text-xs font-bold text-white">2</div>
+          <div class="w-8 h-6 bg-zinc-800 border border-white/10 flex items-center justify-center text-xs font-bold text-white">3</div>
+          <div class="w-8 h-6 bg-zinc-900/50 border border-white/5"></div>
+          <div class="w-8 h-6 bg-zinc-900/50 border border-white/5"></div>
+          <div class="w-8 h-6 bg-zinc-900/50 border border-white/5"></div>
+          <div class="w-8 h-6 bg-zinc-900/50 border border-white/5"></div>
+          <div class="w-8 h-6 bg-zinc-900/50 border border-white/5"></div>
+          <div class="w-8 h-6 bg-zinc-900/50 border border-white/5"></div>
+          <div class="w-8 h-6 bg-zinc-900/50 border border-white/5"></div>
+        </div>
+        <span class="text-[10px] font-black text-zinc-400 uppercase tracking-widest">Puntos</span>
+      </div>
+
+    </div>
+
+  </div>
+
+</body>
+</html>

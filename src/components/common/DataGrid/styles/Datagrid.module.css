@@ -1,0 +1,25 @@
+/*css: Datagrid.module.css
+Descripcion: estilos que se aplica al datagrid
+*/
+
+.searchBar{
+
+width: 10rem;
+height: -webkit-fill-available;
+
+}
+
+.containerDataGrid {
+
+}
+
+@media (max-width: 1200px) {
+
+.containerDataGrid {
+    max-width: 100vw !important;
+    padding: 0;
+    margin: 0;
+
+}
+
+}

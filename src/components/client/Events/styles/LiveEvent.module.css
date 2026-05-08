@@ -1,0 +1,104 @@
+/*css: LiveEvent.module.css
+Descripcion: estilos relacionados al live event
+Autor: Jose Ahias Vargas Pacheco
+*/
+
+.liveContainer {
+    width: 100%;
+    max-width: 100vw;
+    margin: 0 auto;
+    padding: 10px;
+    background-color: #000;
+    min-height: 100vh;
+    overflow-x: hidden;
+    padding-bottom: 150px; 
+}
+
+.scoreBoardWrapper {
+
+    border-radius: 8px; /* Para que se vea despegado de los bordes */
+    box-shadow: 0 -4px 10px rgba(0,0,0,0.3);
+    max-width: 800px;
+    text-align: center;
+    /* display: block; */
+    margin: 0 auto;
+}
+
+
+@media (max-width: 768px) {
+.liveContainer {
+        padding: 5px;
+        /* En móvil el marcador es más alto, aumentamos el espacio libre */
+        padding-bottom: 280px; 
+    }
+
+
+    .scoreBoardWrapper {
+    position: relative;
+    max-width: auto;
+   }
+
+   .scoreBoardWrapper :global(.row) {
+        display: flex !important;
+        flex-direction: column !important;
+        align-items: center !important;
+        justify-content: center !important;
+        gap: 10px !important;
+    }
+
+    .scoreBoardWrapper :global(.col-5),
+    .scoreBoardWrapper :global(.col-2) {
+        width: 100% !important;
+        max-width: 100% !important;
+        flex: 0 0 100% !important;
+        display: flex !important;
+        flex-direction: column !important; 
+        align-items: center !important;
+        justify-content: center !important;
+        text-align: center !important;
+    }
+
+    .scoreBoardWrapper :global(.d-flex) {
+        flex-direction: column !important;
+        align-items: center !important;
+        justify-content: center !important;
+        margin: 0 !important;
+    }
+
+    .scoreBoardWrapper :global(.ms-3),
+    .scoreBoardWrapper :global(.me-3),
+    .scoreBoardWrapper :global(.text-end),
+    .scoreBoardWrapper :global(.text-start) {
+        margin: 0 !important;
+        text-align: center !important;
+    }
+
+    .scoreBoardWrapper :global(._vsWrapper_norom_157) {
+        margin: 5px 0 !important;
+        order: 2; /* El VS queda en medio de los dos bloques de gallos */
+    }
+
+    .scoreBoardWrapper :global(._bigScore_norom_77) {
+        font-size: 2.5rem !important;
+        line-height: 1 !important;
+        margin: 10px 0 !important;
+    }
+
+    .scoreBoardWrapper :global(._scoreGrid_norom_103) {
+        justify-content: center !important;
+        margin: 5px auto !important;
+    }
+
+    .scoreBoardWrapper {
+        /* Ajustamos el punto de anclaje para que la escala no lo mueva del borde inferior */
+        transform-origin: bottom center !important; 
+    }
+}
+
+@media (max-width: 380px) {
+.scoreBoardWrapper {
+        transform: scale(0.88);
+        /* Mantenemos el anclaje abajo */
+        bottom: -5px; 
+    }
+}

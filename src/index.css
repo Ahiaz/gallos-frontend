@@ -1,0 +1,95 @@
+@import "tailwindcss";
+
+@theme {
+  --color-brand-950: #080808;
+  --color-brand-900: #0f0f0f;
+  --color-brand-850: #141414;
+  --color-brand-800: #1a1a1a;
+  --color-brand-700: #232323;
+  --color-gold-300: #f4d77c;
+  --color-gold-400: #d4af37;
+  --color-gold-500: #b8860b;
+  --color-danger-soft: #ef476f;
+  --color-success-soft: #06d6a0;
+  --color-info-soft: #118ab2;
+}
+
+
+body {
+  background-color: #070707;
+}
+
+select {
+  background-color: #0f0f0f;
+  color: #ffffff;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 0.75rem;
+  padding: 0.55rem 0.8rem;
+  min-height: 2.5rem;
+  outline: none;
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+}
+
+select:focus {
+  border-color: #d4af37;
+  box-shadow: 0 0 0 0.2rem rgba(212, 175, 55, 0.18);
+}
+
+select::-ms-expand {
+  display: none;
+}
+
+select:-moz-focusring {
+  color: transparent;
+  text-shadow: 0 0 0 #ffffff;
+}
+
+select option {
+  background-color: #0f0f0f;
+  color: #ffffff;
+}
+
+.react-select-container .react-select__control {
+  background: rgba(15, 15, 15, 0.95) !important;
+  border-color: rgba(255, 255, 255, 0.12) !important;
+  color: #ffffff !important;
+  min-height: 2.75rem !important;
+}
+
+.react-select-container .react-select__control--is-focused {
+  border-color: #d4af37 !important;
+  box-shadow: 0 0 0 0.2rem rgba(212, 175, 55, 0.18) !important;
+}
+
+.react-select__menu,
+.react-select__menu-list {
+  background: #0f0f0f !important;
+  color: #ffffff !important;
+}
+
+.react-select__option {
+  background: #0f0f0f !important;
+  color: #ffffff !important;
+}
+
+.react-select__option--is-focused,
+.react-select__option--is-selected {
+  background: rgba(212, 175, 55, 0.16) !important;
+  color: #ffffff !important;
+}
+
+.react-select-container .react-select__single-value,
+.react-select-container .react-select__placeholder,
+.react-select-container .react-select__input input {
+  color: #ffffff !important;
+}
+
+.react-select-container .react-select__indicator-separator {
+  background-color: rgba(255, 255, 255, 0.12) !important;
+}
+
+.react-select-container .react-select__dropdown-indicator svg {
+  fill: #ffffff !important;
+}

@@ -1,0 +1,78 @@
+
+/*css: LiveFightBets.module.css
+Descripcion: estilos relacionados al LiveFightBets
+Autor: Jose Ahias Vargas Pacheco
+*/
+ 
+.monitorWrapper {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    z-index: 1050; 
+    padding: 0;
+    margin: 0;
+    box-shadow: 0 -5px 15px rgba(0, 0, 0, 0.5); /* Sombra hacia arriba */
+    transition: transform 0.3s ease-in-out;
+}
+
+.monitorWrapper :global(.container-fluid) {
+    padding-left: 0;
+    padding-right: 0;
+}
+
+.monitorCard {
+    border: none !important;
+}
+
+.customHeader {
+    background-color: #121212 !important;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1) !important;
+}
+
+/* Estilo para el scroll interno de la tabla */
+.tableContainer {
+    max-height: 200px;
+    overflow-y: auto;
+    background-color: #000;
+}
+
+/* Custom scrollbar para que se vea bien en modo oscuro */
+.tableContainer::-webkit-scrollbar {
+    width: 6px;
+}
+.tableContainer::-webkit-scrollbar-thumb {
+    background: #444;
+    border-radius: 10px;
+}
+
+@media (min-width: 992px) {
+    .monitorWrapper {
+        right: 15px; 
+    }
+    
+}
+
+
+@media (max-width: 768px) {
+    .monitorWrapper {
+        right: 0; /* En mobile debe ocupar todo el ancho */
+        left: 0;
+        bottom: 0;
+    }
+
+    .monitorCard {
+        border-radius: 0 !important; /* Quitamos bordes redondeados para ganar espacio */
+    }
+
+    .tableContainer {
+        /* Reducimos drásticamente la tabla en mobile */
+        max-height: 180px; 
+    }
+
+    /* Reducimos el tamaño de las celdas para que quepa más info */
+    .tableContainer table td {
+        padding: 5px !important;
+        font-size: 0.7rem !important;
+    }
+}
