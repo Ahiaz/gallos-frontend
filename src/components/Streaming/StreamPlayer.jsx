@@ -176,7 +176,7 @@ const StreamPlayer = () => {
                             {!hidePopOut && streamInfo.url && (
                                 <button
                                     type="button"
-                                    className="flex h-6 w-6 items-center justify-center border border-gold-400/25 bg-gold-400/10 text-gold-300 transition hover:bg-gold-400/22"
+                                    className=" hidden flex h-6 w-6 items-center justify-center border border-gold-400/25 bg-gold-400/10 text-gold-300 transition hover:bg-gold-400/22"
                                     title="Abrir en ventana"
                                     onClick={(e) => { e.stopPropagation(); openPopOut(); }}
                                     onMouseDown={(e) => e.stopPropagation()}
