@@ -6,24 +6,26 @@ Autor: Jose Ahias Vargas
 import moment from "moment";
 import { WALLET, WALLET_FILTER, WALLET_PREVIEW, WALLET_STATUS } from "../../../constants/walletConstants";
 import styles from '../../../styles/General.module.css';
+import { useSort } from "../../../hooks/useSort";
 import { useSecurity } from "../../../hooks/useSecurity";
 
 const WalletHistory = ({ transactions, usersList, loading, filters, onFilterChange, onSearch, onExport }) => {
   const { currency } = useSecurity();
+  const { items: sortedTransactions, requestSort, renderSortIcon } = useSort(transactions, { key: 'created_at', direction: 'desc' }, 'text-gold-400');
 
   const getTransactionUI = (type, status) => {
     if (status === WALLET_STATUS.PENDING) return { icon: 'bi-clock-history', color: 'text-gold-300', label: 'PENDIENTE' };
     if (status === WALLET_STATUS.REJECTED) return { icon: 'bi-x-circle-fill', color: 'text-white/45', label: 'RECHAZADO' };
     switch (type) {
-      case WALLET.DEPOSIT:        return { icon: 'bi-arrow-down-circle-fill', color: 'text-success-soft' };
-      case WALLET.WITHDRAWAL:     return { icon: 'bi-arrow-up-circle-fill', color: 'text-danger-soft' };
-      case WALLET.BET_PLACED:     return { icon: 'bi-play-circle', color: 'text-white/45' };
+      case WALLET.DEPOSIT: return { icon: 'bi-arrow-down-circle-fill', color: 'text-success-soft' };
+      case WALLET.WITHDRAWAL: return { icon: 'bi-arrow-up-circle-fill', color: 'text-danger-soft' };
+      case WALLET.BET_PLACED: return { icon: 'bi-play-circle', color: 'text-white/45' };
       case WALLET.BET_WON:
-      case WALLET.BET_REFUNDED:   return { icon: 'bi-trophy-fill', color: 'text-success-soft' };
-      case WALLET.CREDIT_LOAD:    return { icon: 'bi-bank', color: 'text-info-soft' };
+      case WALLET.BET_REFUNDED: return { icon: 'bi-trophy-fill', color: 'text-success-soft' };
+      case WALLET.CREDIT_LOAD: return { icon: 'bi-bank', color: 'text-info-soft' };
       case WALLET.CREDIT_PAYMENT: return { icon: 'bi-cash-stack', color: 'text-success-soft' };
-      case WALLET.BONUS_LOAD:     return { icon: 'bi-gift-fill', color: 'text-info-soft' };
-      default:                    return { icon: 'bi-dot', color: 'text-white/45' };
+      case WALLET.BONUS_LOAD: return { icon: 'bi-gift-fill', color: 'text-info-soft' };
+      default: return { icon: 'bi-dot', color: 'text-white/45' };
     }
   };
 
@@ -96,7 +98,7 @@ const WalletHistory = ({ transactions, usersList, loading, filters, onFilterChan
                 ? <span className="inline-block h-4 w-4 animate-spin rounded-full border-2 border-transparent border-t-black align-middle"></span>
                 : <><i className="bi bi-funnel me-1 text-black"></i>Filtrar</>}
             </button>
-            <button type="button" className={`${styles.btnSuccess}`} onClick={onExport} disabled={transactions.length === 0}>
+            <button type="button" className={`${styles.btnSuccess}`} onClick={onExport} disabled={sortedTransactions.length === 0}>
               <i className="bi bi-file-earmark-excel text-white"></i>
             </button>
           </div>
@@ -109,20 +111,35 @@ const WalletHistory = ({ transactions, usersList, loading, filters, onFilterChan
           <table className="min-w-full border-collapse" style={{ fontSize: '0.85rem' }}>
             <thead className="bg-brand-850 text-[0.68rem] uppercase tracking-[0.12em] text-white/55">
               <tr>
-                <th className="px-4 py-3 text-left">Fecha</th>
-                <th className="px-3 py-3 text-left">Usuario</th>
-                <th className="px-3 py-3 text-left">Movimiento</th>
-                <th className="px-3 py-3 text-left">Concepto / Trazabilidad</th>
-                <th className="px-3 py-3 text-left">Monto</th>
-                <th className="px-3 py-3 text-left">Balance Post</th>
+                <th className="px-4 py-3 text-left cursor-pointer" onClick={() => requestSort('created_at')}>
+                  Fecha {renderSortIcon('created_at')}
+                </th>
+                <th className="px-3 py-3 text-left cursor-pointer" onClick={() => requestSort('username')}>
+                  Usuario {renderSortIcon('username')}
+                </th>
+                <th className="px-3 py-3 text-left cursor-pointer" onClick={() => requestSort('type')}>
+                  Movimiento {renderSortIcon('type')}
+                </th>
+                <th className="px-3 py-3 text-left cursor-pointer">
+                  Concepto / Trazabilidad
+                </th>
+                <th className="px-3 py-3 text-left cursor-pointer" onClick={() => requestSort('amount')}>
+                  Monto {renderSortIcon('amount')}
+                </th>
+                <th
+                  className="px-3 py-3 text-left cursor-pointer hover:text-white transition-colors"
+                  onClick={() => requestSort('new_balance')} // Cambiado de balance_after a new_balance
+                >
+                  Balance Post {renderSortIcon('new_balance')}
+                </th>
               </tr>
             </thead>
             <tbody className="divide-y divide-white/[0.07]">
-              {!loading && transactions.length === 0 ? (
+              {!loading && sortedTransactions.length === 0 ? (
                 <tr>
                   <td colSpan="6" className="py-10 text-center text-white/45">No se encontraron movimientos financieros.</td>
                 </tr>
-              ) : transactions.map(tx => {
+              ) : sortedTransactions.map(tx => {
                 const ui = getTransactionUI(tx.type, tx.status);
                 const isPending = tx.status === WALLET_STATUS.PENDING;
                 const isApplied = tx.status === WALLET_STATUS.APPLIED;
@@ -130,7 +147,7 @@ const WalletHistory = ({ transactions, usersList, loading, filters, onFilterChan
 
                 const isPositive = [WALLET.DEPOSIT, WALLET.CREDIT_PAYMENT, WALLET.BET_WON].includes(tx.type);
                 const isNegative = [WALLET.WITHDRAWAL, WALLET.BET_PLACED].includes(tx.type);
-                const isVirtual  = [WALLET.CREDIT_LOAD, WALLET.BONUS_LOAD].includes(tx.type);
+                const isVirtual = [WALLET.CREDIT_LOAD, WALLET.BONUS_LOAD].includes(tx.type);
 
                 let amountClass = 'text-white/45';
                 if (isApplied) {

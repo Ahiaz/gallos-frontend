@@ -6,10 +6,12 @@ Autor: Jose Ahias Vargas
 import styles from '../../../styles/General.module.css';
 import { MODE } from "../../../constants/modeConstants";
 import { useSecurity } from "../../../hooks/useSecurity";
+import { useSort } from "../../../hooks/useSort";
 
 const UserAdminList = ({ users, searchTerm, setSearchTerm, onOpenWallet, onOpenUser, loading }) => {
   const activeUsers = users?.filter(user => user.active === true) || [];
   const { currency } = useSecurity();
+  const { items: sortedUsers, requestSort, renderSortIcon } = useSort(users, { key: 'id', direction: 'desc' }, 'text-gold-400');
 
   return (
     <div className="w-[92%] mx-auto mt-6 space-y-4 animate__animated animate__fadeIn">
@@ -43,10 +45,18 @@ const UserAdminList = ({ users, searchTerm, setSearchTerm, onOpenWallet, onOpenU
           <table className="min-w-full border-collapse text-sm">
             <thead className="bg-brand-850 text-[0.68rem] uppercase tracking-[0.12em] text-white/55">
               <tr>
-                <th className="px-4 py-3 text-left">Usuario</th>
-                <th className="px-3 py-3 text-left">Saldo Real</th>
-                <th className="px-3 py-3 text-left">Bonos</th>
-                <th className="px-3 py-3 text-left">Deuda</th>
+                <th className="px-4 py-3 text-left cursor-pointer" onClick={() => requestSort('username')}>
+                  Usuario {renderSortIcon('username')}
+                </th>
+                <th className="px-3 py-3 text-left cursor-pointer" onClick={() => requestSort('balance')}>
+                  Saldo Real {renderSortIcon('balance')}
+                </th>
+                <th className="px-3 py-3 text-left cursor-pointer" onClick={() => requestSort('bonus_balance')}>
+                  Bonos {renderSortIcon('bonus_balance')}
+                </th>
+                <th className="px-3 py-3 text-left cursor-pointer" onClick={() => requestSort('current_debt')}>
+                  Deuda {renderSortIcon('current_debt')}
+                </th>
                 <th className="text-center">Chat</th>
                 <th className="px-3 py-3 text-center">Acciones</th>
               </tr>
@@ -70,7 +80,7 @@ const UserAdminList = ({ users, searchTerm, setSearchTerm, onOpenWallet, onOpenU
                   </td>
                 </tr>
               ) : (
-                activeUsers.map(user => (
+                sortedUsers.map(user => (
                   <tr key={user.id} className="transition hover:bg-white/[0.03]">
                     <td className="px-4 py-2.5">
                       <div className="font-bold text-white">{user.username}</div>

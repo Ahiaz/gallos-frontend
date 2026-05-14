@@ -7,12 +7,13 @@ import { Fragment, useState } from "react";
 import moment from "moment";
 import { WALLET, WALLET_PREVIEW, WALLET_STATUS, WALLET_STATUS_PREVIEW } from "../../../constants/walletConstants";
 import { useSecurity } from "../../../hooks/useSecurity";
+import { useSort } from "../../../hooks/useSort";
 import styles from '../../../styles/General.module.css';
 
 const TransactionRequestList = ({ requests, filters, setFilters, loading, onCancel, onRefresh, onRequestNew, onCreditNew }) => {
   const { currency } = useSecurity();
   const [notesOpenId, setNotesOpenId] = useState(null);
-
+  const { items: sortedRequests, requestSort, renderSortIcon } = useSort(requests, { key: 'created_at', direction: 'desc' }, 'text-gold-400');
   const handleFilterChange = (key, value) => {
     setFilters(prev => ({ ...prev, [key]: value }));
   };
@@ -80,7 +81,13 @@ const TransactionRequestList = ({ requests, filters, setFilters, loading, onCanc
           <table className="min-w-full border-collapse" style={{ fontSize: '0.85rem' }}>
             <thead className="bg-brand-850 text-[0.68rem] uppercase tracking-[0.12em] text-white/55">
               <tr>
-                <th className="px-4 py-3 text-left">Fecha</th>
+                <th className="px-4 py-3 text-left cursor-pointer" onClick={() => requestSort('created_at')}>
+                  Fecha {renderSortIcon('created_at')}
+                </th>
+                <th className="px-3 py-3 text-left cursor-pointer" onClick={() => requestSort('type')}>
+                  Tipo {renderSortIcon('type')}
+                </th>
+                 <th className="px-3 py-3 text-left">Referencia</th>
                 <th className="px-3 py-3 text-left">Tipo / Referencia</th>
                 <th className="px-3 py-3 text-left">Solicitado</th>
                 <th className="px-3 py-3 text-left">Aplicado</th>
@@ -89,14 +96,14 @@ const TransactionRequestList = ({ requests, filters, setFilters, loading, onCanc
               </tr>
             </thead>
             <tbody className="divide-y divide-white/[0.07]">
-              {requests.length === 0 && !loading ? (
+              {sortedRequests.length === 0 && !loading ? (
                 <tr>
                   <td colSpan="6" className="py-10 text-center italic text-white/45">
                     No se encontraron solicitudes.
                   </td>
                 </tr>
               ) : (
-                requests.map((req) => {
+                sortedRequests.map((req) => {
                   const isPending = req.status === WALLET_STATUS.PENDING;
                   const isRejected = req.status === WALLET_STATUS.REJECTED;
                   const isApplied = req.status === WALLET_STATUS.APPLIED;

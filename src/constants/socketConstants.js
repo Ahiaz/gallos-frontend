@@ -14,6 +14,7 @@ export const SOCKET_EVENTS = {
   GLOBAL: {
     NEW_LIVE_EVENT: 'event:started',
     NEW_SCHEDULED_EVENT: 'event:created',
+    EVENT_STARTED: 'event:started',
     EVENT_FINISHED: 'event:finished',
     EVENT_CANCELLED: 'event:cancelled',
     ROUND_STARTED: 'round:started',

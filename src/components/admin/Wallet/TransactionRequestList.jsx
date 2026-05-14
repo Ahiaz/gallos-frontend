@@ -6,10 +6,13 @@ Autor: Jose Ahias Vargas
 import moment from "moment";
 import { useSecurity } from "../../../hooks/useSecurity";
 import { WALLET, WALLET_PREVIEW, WALLET_STATUS, WALLET_STATUS_PREVIEW } from "../../../constants/walletConstants";
+import { useSort } from "../../../hooks/useSort";
 import styles from '../../../styles/General.module.css';
 
 const TransactionRequestList = ({ requests, filters, setFilters, loading, onAction, onRefresh, loadingActionId = null }) => {
   const { currency } = useSecurity();
+  const { items: sortedRequests, requestSort, renderSortIcon } = useSort(requests, { key: 'created_at', direction: 'desc' }, 'text-gold-400');
+
 
   const handleFilterChange = (key, value) => {
     setFilters(prev => ({ ...prev, [key]: value }));
@@ -69,31 +72,39 @@ const TransactionRequestList = ({ requests, filters, setFilters, loading, onActi
           <table className="min-w-full border-collapse" style={{ fontSize: '0.85rem' }}>
             <thead className="bg-brand-850 text-[0.68rem] uppercase tracking-[0.12em] text-white/55">
               <tr>
-                <th className="px-4 py-3 text-left">Fecha</th>
-                <th className="px-3 py-3 text-left">Usuario</th>
+                <th className="px-4 py-3 text-left cursor-pointer" onClick={() => requestSort('created_at')}>
+                  Fecha {renderSortIcon('created_at')}
+                </th>
+                <th className="px-3 py-3 text-left cursor-pointer" onClick={() => requestSort('username')}>
+                  Usuario {renderSortIcon('username')}
+                </th>
                 <th className="px-3 py-3 text-left">Tipo / Referencia</th>
-                <th className="px-3 py-3 text-left">Solicitado</th>
-                <th className="px-3 py-3 text-left">Aplicado</th>
+                <th className="px-3 py-3 text-left" onClick={() => requestSort('amount')}>
+                  Solicitado {renderSortIcon('amount')}
+                </th>
+                <th className="px-3 py-3 text-left" onClick={() => requestSort('amount_applied')}>
+                  Aplicado {renderSortIcon('amount_applied')}
+                </th>
                 <th className="px-3 py-3 text-center">Estado</th>
                 <th className="px-4 py-3 text-end">Acciones</th>
               </tr>
             </thead>
             <tbody className="divide-y divide-white/[0.07]">
-              {loading && requests.length === 0 ? (
+              {loading && sortedRequests.length === 0 ? (
                 <tr>
                   <td colSpan="7" className="py-10 text-center text-white/45">
                     <div className="mr-2 inline-block h-4 w-4 animate-spin rounded-full border-2 border-transparent border-t-gold-400 align-middle"></div>
                     Cargando transacciones...
                   </td>
                 </tr>
-              ) : requests.length === 0 ? (
+              ) : sortedRequests.length === 0 ? (
                 <tr>
                   <td colSpan="7" className="py-10 text-center italic text-white/45">
                     No se encontraron solicitudes.
                   </td>
                 </tr>
               ) : (
-                requests.map(req => {
+                sortedRequests.map(req => {
                   const isPending = req.status === WALLET_STATUS.PENDING;
                   const isRejected = req.status === WALLET_STATUS.REJECTED;
                   const isApplied = req.status === WALLET_STATUS.APPLIED;

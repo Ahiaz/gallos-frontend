@@ -48,6 +48,9 @@ export const useLiveEventSockets = (socket, props) => {
 
             // 1. EL "KILL SWITCH": Si el evento cambió, no intentamos parchar, recargamos todo.
             if (payload.event && payload.event.id !== liveEvent?.id) {
+
+                console.log("Sync: Evento cambió, recargando todo");
+
                 return loadInitialData();
             }
 

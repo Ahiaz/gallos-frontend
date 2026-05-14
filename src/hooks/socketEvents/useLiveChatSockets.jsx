@@ -58,6 +58,7 @@ export const useLiveChatSockets = (socket, props) => {
 
         socket.on(SOCKET_EVENTS.GLOBAL.CHAT_NEW, onNewMessage);
         socket.on(SOCKET_EVENTS.GLOBAL.CHAT_BLOCKED, onChatBlocked);
+        socket.on(SOCKET_EVENTS.GLOBAL.EVENT_STARTED, onReconnect); // Si el evento arranca, recargamos el chat para mostrarlo
         socket.on("reconnect", onReconnect);
 
         // --- LIMPIEZA ---
@@ -65,6 +66,7 @@ export const useLiveChatSockets = (socket, props) => {
         return () => {
            socket.off(SOCKET_EVENTS.GLOBAL.CHAT_NEW, onNewMessage);
             socket.off(SOCKET_EVENTS.GLOBAL.CHAT_BLOCKED, onChatBlocked);
+            socket.off(SOCKET_EVENTS.GLOBAL.EVENT_STARTED, onReconnect);
             socket.off("reconnect", onReconnect);
 
         };

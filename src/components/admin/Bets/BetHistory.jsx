@@ -8,8 +8,9 @@ import moment from "moment";
 import styles from '../../../styles/General.module.css';
 import { BETS, BETS_PREVIEW } from "../../../constants/betConstants";
 import { EVENT_FILTERS } from "../../../constants/eventConstants";
-import { WALLET } from "../../../constants/walletConstants";
+import { WALLET, WALLET_PREVIEW } from "../../../constants/walletConstants";
 import { useSecurity } from "../../../hooks/useSecurity";
+import { useSort } from "../../../hooks/useSort";
 
 const BetHistory = ({
   componentLoading, bets, events, usersList, walletDetails, filters, loading,
@@ -17,6 +18,7 @@ const BetHistory = ({
 }) => {
   const [openId, setOpenId] = useState(null);
   const { currency } = useSecurity();
+  const { items: sortedBets, requestSort, renderSortIcon } = useSort(bets, { key: 'created_at', direction: 'desc' }, 'text-gold-400');
 
   const handleToggle = (id) => {
     const isOpening = openId !== id;
@@ -86,12 +88,20 @@ const BetHistory = ({
             <thead className="bg-brand-850 text-[0.68rem] uppercase tracking-[0.12em] text-white/55">
               <tr>
                 <th className="w-[40px] px-3 py-3"></th>
-                <th className="px-3 py-3 text-left">ID</th>
-                <th className="px-3 py-3 text-left">Usuario</th>
+                <th className="px-3 py-3 cursor-pointer" onClick={() => requestSort('id')}>
+                  ID {renderSortIcon('id')}
+                </th>
+                <th className="px-3 py-3 cursor-pointer text-left" onClick={() => requestSort('username')}>
+                  Usuario {renderSortIcon('username')}
+                </th>
                 <th className="px-3 py-3 text-left">Pelea / Ronda</th>
-                <th className="px-3 py-3 text-left">Monto</th>
+                <th className="px-3 py-3 cursor-pointer text-left" onClick={() => requestSort('amount')}>
+                  Monto {renderSortIcon('amount')}
+                </th>
                 <th className="px-3 py-3 text-left">Estado</th>
-                <th className="px-3 py-3 text-left">Fecha</th>
+                <th className="px-3 py-3 cursor-pointer text-left" onClick={() => requestSort('created_at')}>
+                  Fecha {renderSortIcon('created_at')}
+                </th>
               </tr>
             </thead>
             <tbody className="divide-y divide-white/[0.07]">
@@ -101,8 +111,8 @@ const BetHistory = ({
                     <div className="inline-block h-6 w-6 animate-spin rounded-full border-2 border-transparent border-t-gold-400"></div>
                   </td>
                 </tr>
-              ) : bets.length > 0 ? (
-                bets.map(bet => (
+              ) : sortedBets.length > 0 ? (
+                sortedBets.map(bet => (
                   <Fragment key={`group-${bet.id}`}>
                     {/* Fila Principal */}
                     <tr
@@ -137,11 +147,10 @@ const BetHistory = ({
                         )}
                       </td>
                       <td className="px-3 py-2.5">
-                        <span className={`rounded-full px-2 py-0.5 text-[0.6rem] font-black uppercase ${
-                          bet.paid === BETS.PAID ? 'bg-success-soft/15 text-success-soft' :
+                        <span className={`rounded-full px-2 py-0.5 text-[0.6rem] font-black uppercase ${bet.paid === BETS.PAID ? 'bg-success-soft/15 text-success-soft' :
                           bet.paid === BETS.LOST ? 'bg-danger-soft/15 text-danger-soft' :
-                          'bg-white/10 text-white/55'
-                        }`}>
+                            'bg-white/10 text-white/55'
+                          }`}>
                           {BETS_PREVIEW[bet.paid] || bet.paid}
                         </span>
                       </td>
@@ -177,9 +186,9 @@ const BetHistory = ({
                                   <tbody className="divide-y divide-white/[0.07]">
                                     {walletDetails[bet.id].map((tx, idx) => (
                                       <tr key={idx}>
-                                        <td className="px-2 py-1.5 font-bold text-white/80">{tx.type}</td>
+                                        <td className="px-2 py-1.5 font-bold text-white/80">{WALLET_PREVIEW[tx.type] || tx.type}</td>
                                         <td className={`px-2 py-1.5 ${tx.type === WALLET.BET_PLACED ? 'text-danger-soft' : 'text-success-soft'}`}>
-                                          {currency}{Number(tx.amount).toLocaleString()}{tx.type === WALLET.BET_PLACED ? '-' : '+'}
+                                          {tx.type === WALLET.BET_PLACED ? '-' : '+'}{currency}{Number(tx.amount).toLocaleString()}
                                         </td>
                                         <td className="px-2 py-1.5 text-white/60">{currency}{Number(tx.previous_balance).toLocaleString()}</td>
                                         <td className="px-2 py-1.5 font-bold text-white">{currency}{Number(tx.new_balance).toLocaleString()}</td>
